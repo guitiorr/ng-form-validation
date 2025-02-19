@@ -10,6 +10,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class ReactiveFormComponent {
 
+  constructor(){
+    this.userForm.controls['state'].disable();
+    setTimeout(() => {
+      this.userForm.controls['state'].enable();
+    }, 5000);
+    const isValid = this.userForm.invalid;
+  }
+
   userForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(4)]),
