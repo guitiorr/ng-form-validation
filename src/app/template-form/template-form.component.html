@@ -4,8 +4,13 @@
 <h1>User Form</h1>
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
-    <label for="validationCustom01" class="form-label">First name</label>
-    <input type="text" class="form-control" id="validationCustom01" value="Mark" required name="firstName" [(ngModel)]="userObj.firstName">
+    <label for="validationCustom01" class="form-label">First name <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="validationCustom01" value="Mark" required name="firstName" #fname="ngModel" [(ngModel)]="userObj.firstName">
+    <div class="text-danger">
+      @if (fname.errors?.['required']) {
+        <span>This is required</span>
+      }
+    </div>
     <div class="valid-feedback">
       Looks good!
     </div>
@@ -63,6 +68,6 @@
     </div>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn btn-primary" type="submit" (click)="onSave()">Submit form</button>
   </div>
 </form>

@@ -18,4 +18,8 @@ export class TemplateFormComponent {
     zip: "",
     isTermsAgreed: false,
   }
+
+  onSave(){
+    console.log(this.userObj);
+  }
 }
