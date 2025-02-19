@@ -7,9 +7,9 @@
     <label for="validationCustom01" class="form-label">First name</label>
     <input type="text" class="form-control" id="validationCustom01" value="Mark" required formControlName="firstName">
     <div class="text-danger">
-      @if (userForm.controls['firstName'].errors?.['required'] && userForm.controls['firstName'].touched && userForm.controls['firstName'].dirty) {
-        <span>This is required</span>
-      }
+      <span *ngIf="userForm.controls['firstName'].touched && userForm.controls['firstName'].dirty">
+        <span *ngIf="userForm.controls['firstName'].errors?.['required']">This is required</span>
+      </span>
     </div>
     <div class="valid-feedback">
       Looks good!
@@ -19,12 +19,10 @@
     <label for="validationCustom02" class="form-label">Last name</label>
     <input type="text" class="form-control" id="validationCustom02" value="Otto" required formControlName="lastName">
     <div class="text-danger">
-      @if (userForm.controls['lastName'].errors?.['required'] && userForm.controls['lastName'].touched && userForm.controls['lastName'].dirty) {
-        <span>This is required</span>
-      }
-      @else if (userForm.controls['lastName'].errors?.['minLength'] && userForm.controls['lastName'].touched && userForm.controls['lastName'].dirty) {
-
-      }
+      <span *ngIf="userForm.controls['lastName'].touched && userForm.controls['lastName'].dirty">
+        <span *ngIf="userForm.controls['lastName'].errors?.['required']">This is required</span>
+        <span *ngIf="userForm.controls['lastName'].errors?.['minlength']">Minimum length is 5</span>
+      </span>
     </div>
     <div class="valid-feedback">
       Looks good!
@@ -35,16 +33,20 @@
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
       <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required formControlName="username">
-      <div class="invalid-feedback">
-        Please choose a username.
+      <div class="text-danger">
+        <span *ngIf="userForm.controls['username'].touched && userForm.controls['username'].dirty">
+          <span *ngIf="userForm.controls['username'].errors?.['required']">Please choose a username.</span>
+        </span>
       </div>
     </div>
   </div>
   <div class="col-md-6">
     <label for="validationCustom03" class="form-label">City</label>
     <input type="text" class="form-control" id="validationCustom03" required formControlName="city">
-    <div class="invalid-feedback">
-      Please provide a valid city.
+    <div class="text-danger">
+      <span *ngIf="userForm.controls['city'].touched && userForm.controls['city'].dirty">
+        <span *ngIf="userForm.controls['city'].errors?.['required']">Please provide a valid city.</span>
+      </span>
     </div>
   </div>
   <div class="col-md-3">
@@ -55,15 +57,19 @@
       <option value="Semarang">Semarang</option>
       <option value="Jogja">Jogja</option>
     </select>
-    <div class="invalid-feedback">
-      Please select a valid state.
+    <div class="text-danger">
+      <span *ngIf="userForm.controls['state'].touched && userForm.controls['state'].dirty">
+        <span *ngIf="userForm.controls['state'].errors?.['required']">Please select a valid state.</span>
+      </span>
     </div>
   </div>
   <div class="col-md-3">
     <label for="validationCustom05" class="form-label">Zip</label>
     <input type="text" class="form-control" id="validationCustom05" required formControlName="zip">
-    <div class="invalid-feedback">
-      Please provide a valid zip.
+    <div class="text-danger">
+      <span *ngIf="userForm.controls['zip'].touched && userForm.controls['zip'].dirty">
+        <span *ngIf="userForm.controls['zip'].errors?.['required']">Please provide a valid zip.</span>
+      </span>
     </div>
   </div>
   <div class="col-12">
@@ -72,12 +78,14 @@
       <label class="form-check-label" for="invalidCheck">
         Agree to terms and conditions
       </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
+      <div class="text-danger">
+        <span *ngIf="userForm.controls['isTermsAgreed'].touched && userForm.controls['isTermsAgreed'].dirty">
+          <span *ngIf="userForm.controls['isTermsAgreed'].errors?.['required']">You must agree before submitting.</span>
+        </span>
       </div>
     </div>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Submit form</button>
   </div>
 </form>
