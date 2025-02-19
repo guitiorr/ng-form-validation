@@ -5,4 +5,5 @@ export interface User {
   city: string;
   state: string;
   zip: string;
+  isTermsAgreed: boolean;
 }
