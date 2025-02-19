@@ -6,6 +6,11 @@
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">First name</label>
     <input type="text" class="form-control" id="validationCustom01" value="Mark" required formControlName="firstName">
+    <div class="text-danger">
+      @if (userForm.controls['firstName'].errors?.['required'] && userForm.controls['firstName'].touched && userForm.controls['firstName'].dirty) {
+        <span>This is required</span>
+      }
+    </div>
     <div class="valid-feedback">
       Looks good!
     </div>
@@ -13,6 +18,14 @@
   <div class="col-md-4">
     <label for="validationCustom02" class="form-label">Last name</label>
     <input type="text" class="form-control" id="validationCustom02" value="Otto" required formControlName="lastName">
+    <div class="text-danger">
+      @if (userForm.controls['lastName'].errors?.['required'] && userForm.controls['lastName'].touched && userForm.controls['lastName'].dirty) {
+        <span>This is required</span>
+      }
+      @else if (userForm.controls['lastName'].errors?.['minLength'] && userForm.controls['lastName'].touched && userForm.controls['lastName'].dirty) {
+
+      }
+    </div>
     <div class="valid-feedback">
       Looks good!
     </div>
