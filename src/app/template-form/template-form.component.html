@@ -7,7 +7,7 @@
     <label for="validationCustom01" class="form-label">First name <span class="text-danger">*</span></label>
     <input type="text" class="form-control" id="validationCustom01" value="Mark" required name="firstName" #fname="ngModel" [(ngModel)]="userObj.firstName">
     <div class="text-danger">
-      @if (fname.errors?.['required']) {
+      @if (fname.errors?.['required'] && fname.touched && fname.dirty) {
         <span>This is required</span>
       }
     </div>
@@ -16,8 +16,16 @@
     </div>
   </div>
   <div class="col-md-4">
-    <label for="validationCustom02" class="form-label">Last name</label>
-    <input type="text" class="form-control" id="validationCustom02" value="Otto" name="lastName" [(ngModel)]="userObj.lastName">
+    <label for="validationCustom02" class="form-label">Last names <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="validationCustom02" value="Otto" required minlength="4" #lname="ngModel" name="lastName" [(ngModel)]="userObj.lastName">
+    <div class="text-danger">
+      @if (lname.errors?.['required'] && lname.touched && lname.dirty) {
+        <span>This is required</span>
+      }
+      @if (lname.errors?.['minlength'] && lname.touched && lname.dirty) {
+        <span>Minimum length of 4</span>
+      }
+    </div>
     <div class="valid-feedback">
       Looks good!
     </div>
